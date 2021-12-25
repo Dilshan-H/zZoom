@@ -1,0 +1,24 @@
+# Do not change the values in the left side of the equal sign (=)!
+# Do not change the order of the values!
+#
+# username:- This will appear in the Zoom participants list.
+# meetingLink:- Your Zoom meeting link
+# 		(Ex: https://zoom.us/j/12345678912?pwd=ed43djGF5D0RndrcmdJfrsuN1)
+# startDate:- Meeting date (Ex: 2021.12.12)
+# startTime:- Meeting starting time (24hrs format - Ex: 16:30)
+# stopIncomingVideo:- This will stop incomming video from other participants.
+#			Will reduce your data charges. (Yes/No)
+# minimumUsersLimit:- If the amount of participats are less than this value, the session will be
+#			automatically terminate. -- This value is combined with 'waitTime'!
+# waitTime:- After this time period 'minimumUsersLimit' will be considered. -- Value should be in minutes!
+# sleepSystemOnEnd:- System will put to sleep/suspend at the end of the meeting. (Yes/No)
+#
+
+username = Your Name
+meetingLink = https://zoom.us/j/12345678912?pwd=ed43djGF5D0RndrcmdJfrsuN1
+startDate = 2021-12-25
+startTime = 18:00
+stopIncomingVideo = yes
+minimumUsersLimit = 5
+waitTime = 10
+sleepSystemOnEnd = yes
