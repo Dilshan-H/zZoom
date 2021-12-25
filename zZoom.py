@@ -16,7 +16,7 @@ import cookies #cookies for Zoom Web session
 def write_file(participants):
     """Write attendance data to the disk as a CSV file"""
     try:
-        with open("attendance.csv", 'w') as f:
+        with open("attendance.csv", 'w', encoding='utf-8') as f:
             fields = ['Name', 'Timestamp']
             csvwriter = csv.DictWriter(f, fieldnames=fields)
             for userData in participants:
