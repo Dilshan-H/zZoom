@@ -4,7 +4,7 @@
 # username:- This will appear in the Zoom participants list.
 # meetingLink:- Your Zoom meeting link
 # 		(Ex: https://zoom.us/j/12345678912?pwd=ed43djGF5D0RndrcmdJfrsuN1)
-# startDate:- Meeting date (Ex: 2021.12.12)
+# startDate:- Meeting date (Ex: 2021.12.31)
 # startTime:- Meeting starting time (24hrs format - Ex: 16:30)
 # stopIncomingVideo:- This will stop incomming video from other participants.
 #			Will reduce your data charges. (Yes/No)
@@ -14,11 +14,11 @@
 # sleepSystemOnEnd:- System will put to sleep/suspend at the end of the meeting. (Yes/No)
 #
 
-username = Your Name
+username = Name
 meetingLink = https://zoom.us/j/12345678912?pwd=ed43djGF5D0RndrcmdJfrsuN1
-startDate = 2021-12-25
-startTime = 18:00
+startDate = 2021-12-31
+startTime = 16:45
 stopIncomingVideo = yes
 minimumUsersLimit = 5
-waitTime = 10
+waitTime = 30
 sleepSystemOnEnd = yes

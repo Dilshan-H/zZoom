@@ -1,0 +1,4 @@
+Geckodriver is used under the Mozilla Public License
+(https://www.mozilla.org/en-US/MPL/2.0/).
+
+Read More @[GitHub] -- https://github.com/mozilla/geckodriver

@@ -102,15 +102,18 @@ def launcher():
 
 
 def check_waiting_room(driver):
-    """Check waiting room status in Zoom meeting"""
+    """Check waiting room / meeting status in Zoom meeting"""
     connectCount = 0
-    while connectCount < 6:
+    while connectCount < 30:
+        meetingStat = driver.title
         isWaitingRoom = driver.find_elements(By.XPATH, "//span[text()='Please wait, the meeting host will let you in soon.']")
-        #Not started yet? >> check
-        if len(isWaitingRoom) != 0:
+        
+        if len(isWaitingRoom) != 0 or meetingStat == 'The meeting has not started - Zoom':
+            print('Waiting...')
             sleep(10)
             connectCount += 1
         else:
+            sleep(10)
             return False
     return True 
 
@@ -145,7 +148,10 @@ def zZoom_join(data):
     print('=' * 15, '\n')
     
     print('Starting the joining process...')
-    
+
+    #fireFoxOptions = webdriver.FirefoxOptions()
+    #fireFoxOptions.set_headless()
+    #driver = webdriver.Firefox(firefox_options=fireFoxOptions)
     driver = webdriver.Firefox()
     driver.get(data[1])
 
@@ -158,6 +164,12 @@ def zZoom_join(data):
 
     try:
         print("Joining the meeting...")
+        print("Checking meeting status...")
+        meetingStat = check_waiting_room(driver)
+        if meetingStat:
+            print("- Waiting [startup] timeout -\nClosing the webdriver...")
+            driver.quit()
+            suspend_pc(data[7])
         driver.find_elements(By.XPATH, "//button[text()='Join']")[0].click()
         sleep(2)
         isCodeError = driver.find_elements(By.ID, "unlogin-join-form")
@@ -166,10 +178,10 @@ def zZoom_join(data):
             print("Closing the webdriver...")
             driver.quit()
             suspend_pc(data[7])
-        print("Checking for waiting room")
+        print("Checking for waiting room | Meeting status")
         isWaiting = check_waiting_room(driver)
         if isWaiting:
-            print("- Waiting room timeout -\nClosing the webdriver...")
+            print("- Waiting timeout -\nClosing the webdriver...")
             driver.quit()
             suspend_pc(data[7])
         print("Connecting via computer audio...")
@@ -268,7 +280,7 @@ def log_participants(driver, minUsers=5, waitTime=10, suspendStat='yes'):
                     print("--- Request rejected ---")
                     
                 activeUsers = driver.find_elements(By.CLASS_NAME, "participants-item__name-section")
-                print('Users: ', len(activeUsers))
+                #print('Users: ', len(activeUsers))
                 for user in activeUsers[1:]:
                     tempText = re.findall(r"^<span .*\">(.*)<\/span.*\">(.*)<\/span>", user.get_attribute("innerHTML").strip())
                     uName = tempText[0][0] + tempText[0][1]
@@ -286,8 +298,9 @@ def log_participants(driver, minUsers=5, waitTime=10, suspendStat='yes'):
             except:
                 print('Seems like session has been ended')
                 write_file(participants)
-                driver.quit()
-                suspend_pc(suspendStat)
+                break
+        driver.quit()
+        suspend_pc(suspendStat)
     except:
         print('-'*25)
         write_file(participants)
