@@ -3,6 +3,8 @@ Automate Zoom Cloud Meeting joining process + Zoom Cloud Meeting Tools - Seleniu
 
 It's easy! - Provide the Zoom link, date & the time - Run **`zZoom.py`** - Sit back & relax :)
 
+![zZoom_info](https://user-images.githubusercontent.com/77499497/147723585-ecf3e52e-5d19-4b66-b245-8fb487bcf867.png)
+
 ## Why zZoom?
 ---
 - Instead of using `PyAutoGUI` to interact with the Zoom Desktop application, here we use `Selenium` & `Geckodriver`.
